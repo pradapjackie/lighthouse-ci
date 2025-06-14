@@ -28,6 +28,9 @@ jobs:
         run: |
           LHCI_BUILD_CONTEXT__CURRENT_HASH=github-actions lhci autorun --config=lighthouserc.js || true
 
+      - name: run the folder path
+        run: ls
+
       - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v4
         with:
