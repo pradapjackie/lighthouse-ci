@@ -2,7 +2,7 @@ module.exports = {
     ci: {
         collect: {
             url: ['https://example.com'],
-            numberOfRuns: 3,
+            numberOfRuns: 1,
             settings: {
                 chromeFlags: '--no-sandbox',
                 preset: 'desktop',

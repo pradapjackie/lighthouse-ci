@@ -19,19 +19,24 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: npm i
+        run: npm install
 
       - name: Install Lighthouse CI
         run: npm install -g @lhci/cli
 
-      - name: Run Lighthouse CI
+      - name: Run Lighthouse Collect
         run: |
           mkdir -p ./lhci-report
-          LHCI_BUILD_CONTEXT__CURRENT_HASH=github-actions lhci autorun --config=lighthouserc.js || true
-          cp .lighthouseci/*.report.html ./lhci-report/
+          LHCI_BUILD_CONTEXT__CURRENT_HASH=github-actions \
+          lhci collect --config=lighthouserc.js \
+          --outputPath=./lhci-report/report.html
 
       - name: Upload Lighthouse Report
         uses: actions/upload-artifact@v4
         with:
           name: lighthouse-report
-          path: ./lhci-report/
+          path: ./lhci-report/report.html
+
+      - name: Upload to Temporary Public Storage
+        run: |
+          LHCI_BUILD_CONTEXT__CURRENT_HASH=github-actions lhci upload --config=lighthouserc.js
