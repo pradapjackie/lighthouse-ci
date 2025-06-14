@@ -1,0 +1,12 @@
+{
+  "name": "lighthouse-ci",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "LHCI_BUILD_CONTEXT__CURRENT_HASH=github-actions lhci autorun --config=lighthouserc.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
